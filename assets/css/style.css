@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0a0908;
+  font-family: "Orbitron", sans-serif;
+}
+
+.container {
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+}
+
+.board {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-family: "Orbitron", sans-serif;
+  width: 100%;
+  color: #0a0908;
+  background-color: #50c9ce;
+  text-align: center;
+}
+
+.game {
+  width: 60vmin;
+  height: 60vmin;
+  margin-right: 35rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.box {
+  height: 18vmin;
+  width: 18vmin;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 1rem rgba(80, 201, 206, 1);
+  font-family: "Orbitron", sans-serif;
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+.gameWinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.newGame_ContinueBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#newGameBtn {
+  height: 14rem;
+  background-color: #50c9ce;
+  border: none;
+  margin: 1rem;
+  box-shadow: 0 0 1rem rgba(80, 201, 206, 1);
+  font-family: "Orbitron", sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 50%;
+}
+
+#continueBtn {
+  height: 14rem;
+  width: 14rem;
+  background-color: #50c9ce;
+  border: none;
+  margin: 1rem;
+  box-shadow: 0 0 1rem rgba(80, 201, 206, 1);
+  font-family: "Orbitron", sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 50%;
+}
+
+#msg {
+  color: white;
+  font-size: 4rem;
+  text-align: center;
+}
+
+.hide {
+  display: none;
+}
+#reset {
+  height: 8.5rem;
+  background-color: #50c9ce;
+  border: none;
+  margin-top: 1rem;
+  box-shadow: 0 0 1rem rgba(80, 201, 206, 1);
+  font-family: "Orbitron", sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 50%;
+}
+
+/* Add styles for the scoreboard */
+.scoreboard {
+  text-align: center;
+  color: white;
+  border: 2px solid #50c9ce;
+  border-radius: 2rem;
+  padding: 0.5rem;
+}
+
+.scoreboard div {
+  margin: 0.5rem 0;
+}
+
+.scoreboard p {
+  font-size: 1.5rem;
+  margin: 0.2rem 0;
+}

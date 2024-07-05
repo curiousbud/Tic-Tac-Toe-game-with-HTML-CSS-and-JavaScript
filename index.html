@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Tic-Tac-Toe Game</title>
+</head>
+
+<body>
+    <main>
+        <h1>Tic-Tac-Toe</h1>
+        <div class="gameWinner hide">
+            <p id="msg">Winner</p>
+            <div class="newGame_ContinueBtn">
+                <button id="newGameBtn">New Game</button>
+                <button id="continueBtn">Continue</button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="game">
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+            </div>
+            <div class="board">
+                <button id="reset">Reset</button>
+                <div class="scoreboard">
+                    <div id="player1Score">
+                        <p>Player 1</p>
+                        <p>Wins: 0, Losses: 0</p>
+                    </div>
+                    <div id="player2Score">
+                        <p>Player 2</p>
+                        <p>Wins: 0, Losses: 0</p>
+                    </div>
+                    <div id="tieScore">
+                        <p>Ties: 0</p>
+                    </div>
+                    <div id="playerAssignments">
+                        <p id="player1Assignment">Player 1: O</p>
+                        <p id="player2Assignment">Player 2: X</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>
