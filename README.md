@@ -1,6 +1,7 @@
 # Tic-Tac-Toe Game
 
-![Tic-Tac-Toe Screenshot](./path/to/your/image.png)
+![image](https://github.com/curiousbud/Tic-Tac-Toe-game-with-HTML-CSS-and-JavaScript/assets/144376035/cf991499-ae97-4246-bd1f-de1f9bd2331f)
+
 
 ## Description
 
@@ -15,7 +16,8 @@ This is a simple Tic-Tac-Toe game implemented using HTML, CSS, and JavaScript. T
 
 ## Screenshot
 
-![Tic-Tac-Toe Game](./path/to/your/image.png)
+![image](https://github.com/curiousbud/Tic-Tac-Toe-game-with-HTML-CSS-and-JavaScript/assets/144376035/920f0deb-faab-4870-9469-4dbe9df4ad6b)
+
 
 ## Installation
 
