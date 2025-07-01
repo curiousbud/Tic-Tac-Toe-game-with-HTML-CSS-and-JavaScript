@@ -2,7 +2,7 @@
 
 ![image](https://github.com/curiousbud/Tic-Tac-Toe-game-with-HTML-CSS-and-JavaScript/assets/144376035/cf991499-ae97-4246-bd1f-de1f9bd2331f)
 
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/470945f3-196e-4bbd-83a5-c8da72eb9190/deploy-status)](https://app.netlify.com/projects/vsuqi/deploys)
 ## Description
 
 This is a simple Tic-Tac-Toe game implemented using HTML, CSS, and JavaScript. The game features a clean and modern interface, allowing two players to compete against each other on the same device. The game keeps track of wins, losses, and ties for each player.
