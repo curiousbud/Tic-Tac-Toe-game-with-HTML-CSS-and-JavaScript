@@ -1,59 +1,82 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Boogaloo&display=swap");
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box; /* Added for easier sizing */
 }
 
 body {
-  background-color: #0a0908;
-  font-family: "Orbitron", sans-serif;
+  background-color: #ADD8E6; /* Light Sky Blue */
+  font-family: "Boogaloo", cursive; /* Playful fallback font */
+  color: #333; /* Darker text for readability */
 }
 
 .container {
-  height: 70vh;
+  min-height: 100vh; /* Ensure full viewport height */
   display: flex;
   align-items: center;
   justify-content: space-around;
-  flex-direction: row-reverse;
+  flex-direction: column; /* Stack elements vertically for better responsiveness */
+  padding: 20px;
 }
 
 .board {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 20px; /* Add some space above the board */
 }
 
 h1 {
-  font-family: "Orbitron", sans-serif;
+  font-family: "Luckiest Guy", cursive;
   width: 100%;
-  color: #0a0908;
-  background-color: #50c9ce;
+  color: #FFFFFF; /* White text */
+  background-color: #FFA500; /* Playful Orange */
   text-align: center;
+  padding: 15px 0;
+  font-size: 3rem; /* Larger heading */
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .game {
   width: 60vmin;
+  max-width: 400px; /* Max width for larger screens */
   height: 60vmin;
-  margin-right: 35rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-evenly;
+  max-height: 400px; /* Max height for larger screens */
+  display: grid; /* Use grid for easier box alignment */
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px; /* Space between boxes */
+  margin-bottom: 30px; /* Space below the game grid */
 }
 
 .box {
-  height: 18vmin;
-  width: 18vmin;
-  background-color: white;
-  color: black;
-  border: none;
-  border-radius: 50%;
-  box-shadow: 0 0 1rem rgba(80, 201, 206, 1);
-  font-family: "Orbitron", sans-serif;
-  font-size: 4rem;
-  font-weight: 900;
+  background-color: #FFD700; /* Warm Yellow */
+  color: #D9534F; /* Contrasting color for X/O, e.g., a reddish tone */
+  border: 3px solid #DA70D6; /* Fun Purple border */
+  border-radius: 15px; /* Softer corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: "Luckiest Guy", cursive;
+  font-size: 5vmin; /* Responsive font size */
+  display: flex; /* Center content easily */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.box:hover {
+  background-color: #FFC107; /* Slightly darker yellow on hover */
+}
+
+.box:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .gameWinner {
@@ -61,77 +84,147 @@ h1 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 .newGame_ContinueBtn {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center; /* Center buttons */
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  gap: 15px; /* Space between buttons */
 }
 
-#newGameBtn {
-  height: 14rem;
-  background-color: #50c9ce;
+#newGameBtn,
+#continueBtn,
+#reset {
+  background-color: #40E0D0; /* Friendly Teal */
+  color: #FFFFFF;
   border: none;
-  margin: 1rem;
-  box-shadow: 0 0 1rem rgba(80, 201, 206, 1);
-  font-family: "Orbitron", sans-serif;
-  font-weight: 600;
-  font-size: 2rem;
-  padding: 1rem;
-  border-radius: 50%;
+  margin: 0.5rem; /* Adjusted margin */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: "Luckiest Guy", cursive;
+  font-weight: normal; /* Luckiest Guy is already bold */
+  font-size: 1.5rem; /* Slightly smaller for better fit */
+  padding: 15px 25px; /* More padding */
+  border-radius: 25px; /* More rounded */
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-#continueBtn {
-  height: 14rem;
-  width: 14rem;
-  background-color: #50c9ce;
-  border: none;
-  margin: 1rem;
-  box-shadow: 0 0 1rem rgba(80, 201, 206, 1);
-  font-family: "Orbitron", sans-serif;
-  font-weight: 600;
-  font-size: 2rem;
-  padding: 1rem;
-  border-radius: 50%;
+#newGameBtn:hover,
+#continueBtn:hover,
+#reset:hover {
+  transform: scale(1.05);
+  background-color: #35C4B5; /* Darker teal on hover */
 }
+
 
 #msg {
-  color: white;
-  font-size: 4rem;
+  color: #333; /* Darker text for readability */
+  font-size: 2.5rem; /* Adjusted size */
   text-align: center;
+  margin-bottom: 20px; /* Add space below message */
+  font-family: "Boogaloo", cursive;
 }
 
 .hide {
-  display: none;
-}
-#reset {
-  height: 8.5rem;
-  background-color: #50c9ce;
-  border: none;
-  margin-top: 1rem;
-  box-shadow: 0 0 1rem rgba(80, 201, 206, 1);
-  font-family: "Orbitron", sans-serif;
-  font-weight: 600;
-  font-size: 2rem;
-  padding: 1rem;
-  border-radius: 50%;
+  display: none !important; /* Ensure hide class works effectively */
 }
 
-/* Add styles for the scoreboard */
+/* Scoreboard Styles */
 .scoreboard {
   text-align: center;
-  color: white;
-  border: 2px solid #50c9ce;
-  border-radius: 2rem;
-  padding: 0.5rem;
+  color: #333; /* Dark text for readability */
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+  border: 3px solid #FFA500; /* Playful Orange border */
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 500px; /* Max width for scoreboard */
+  margin-top: 0; /* Remove negative margin from JS if any */
 }
 
 .scoreboard div {
-  margin: 0.5rem 0;
+  margin: 10px 0;
 }
 
 .scoreboard p {
-  font-size: 1.5rem;
-  margin: 0.2rem 0;
+  font-size: 1.2rem; /* Slightly smaller for better fit */
+  margin: 5px 0;
+  font-family: "Boogaloo", cursive;
+}
+
+/* Ensure game elements are not hidden by default if they were before */
+.game, #reset {
+  display: flex; /* or grid, as appropriate */
+}
+.game {
+  display: grid;
+}
+#reset {
+ display: inline-block; /* or block */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    justify-content: flex-start; /* Align items to the top */
+  }
+  .game {
+    width: 80vmin;
+    height: 80vmin;
+    margin-right: 0; /* Remove margin for smaller screens */
+  }
+  h1 {
+    font-size: 2.5rem;
+  }
+  #msg {
+    font-size: 2rem;
+  }
+  #newGameBtn,
+  #continueBtn,
+  #reset {
+    font-size: 1.2rem;
+    padding: 12px 20px;
+  }
+  .scoreboard {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .game {
+    width: 90vmin;
+    height: 90vmin;
+    gap: 5px;
+  }
+  .box {
+    font-size: 8vmin;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  #msg {
+    font-size: 1.8rem;
+  }
+  #newGameBtn,
+  #continueBtn,
+  #reset {
+    font-size: 1rem;
+    padding: 10px 15px;
+    width: 100%; /* Make buttons full width */
+    margin-bottom: 10px; /* Add space between stacked buttons */
+  }
+  .newGame_ContinueBtn {
+    flex-direction: column; /* Stack these buttons */
+  }
+  .scoreboard p {
+    font-size: 1rem;
+  }
 }

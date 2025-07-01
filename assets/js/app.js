@@ -5,38 +5,56 @@ let newGameBtn = document.querySelector("#newGameBtn");
 let continueBtn = document.querySelector("#continueBtn");
 let msg = document.querySelector("#msg");
 let game = document.querySelector(".game");
-let player1Score = document.querySelector("#player1Score p:last-child");
-let player2Score = document.querySelector("#player2Score p:last-child");
-let tieScore = document.querySelector("#tieScore p");
-let player1Assignment = document.querySelector("#player1Assignment");
-let player2Assignment = document.querySelector("#player2Assignment");
-let scoreboard = document.querySelector(".scoreboard");
-let turnO = true;
 
-let player1 = "O";
-let player2 = "X";
+// Scoreboard elements
+let player1NameDisplay = document.querySelector("#player1Score p:first-child");
+let player1ScoreDisplay = document.querySelector("#player1Score p:last-child");
+let player2NameDisplay = document.querySelector("#player2Score p:first-child");
+let player2ScoreDisplay = document.querySelector("#player2Score p:last-child");
+let tieScoreDisplay = document.querySelector("#tieScore p"); // Text already "Draws: 0" in HTML
+let player1AssignmentDisplay = document.querySelector("#player1Assignment");
+let player2AssignmentDisplay = document.querySelector("#player2Assignment");
+
+let turnO = true; // Remains true for the first player's turn logic
+
+// Player symbols and names
+let player1Symbol = "🐞"; // Ladybug
+let player2Symbol = "🐝"; // Bumblebee
+let player1Name = "Ladybug";
+let player2Name = "Bumblebee";
+
+// Score tracking
 let player1Wins = 0;
 let player2Wins = 0;
 let player1Losses = 0;
 let player2Losses = 0;
-let ties = 0;
+let draws = 0; // Changed from ties to draws
 
+// Function to randomly assign symbols and names to Player 1 and Player 2
 const assignPlayers = () => {
   if (Math.random() < 0.5) {
-    player1 = "O";
-    player2 = "X";
+    player1Symbol = "🐞";
+    player1Name = "Ladybug";
+    player2Symbol = "🐝";
+    player2Name = "Bumblebee";
   } else {
-    player1 = "X";
-    player2 = "O";
+    player1Symbol = "🐝";
+    player1Name = "Bumblebee";
+    player2Symbol = "🐞";
+    player2Name = "Ladybug";
   }
-  player1Assignment.innerText = `Player 1: ${player1}`;
-  player2Assignment.innerText = `Player 2: ${player2}`;
+  // Update scoreboard names and assignments
+  player1NameDisplay.innerText = `${player1Name} (${player1Symbol})`;
+  player2NameDisplay.innerText = `${player2Name} (${player2Symbol})`;
+  player1AssignmentDisplay.innerText = `${player1Name} is ${player1Symbol}`;
+  player2AssignmentDisplay.innerText = `${player2Name} is ${player2Symbol}`;
+  turnO = true; // Reset turn to player 1 (whoever is currently player1Symbol)
 };
 
 const updateScoreboard = () => {
-  player1Score.innerText = `Wins: ${player1Wins}, Losses: ${player1Losses}`;
-  player2Score.innerText = `Wins: ${player2Wins}, Losses: ${player2Losses}`;
-  tieScore.innerText = `Ties: ${ties}`;
+  player1ScoreDisplay.innerText = `Wins: ${player1Wins}, Losses: ${player1Losses}`;
+  player2ScoreDisplay.innerText = `Wins: ${player2Wins}, Losses: ${player2Losses}`;
+  tieScoreDisplay.innerText = `Draws: ${draws}`;
 };
 
 const winningPatterns = [
@@ -53,10 +71,10 @@ const winningPatterns = [
 const checkTie = () => {
   for (let box of boxes) {
     if (box.innerText === "") {
-      return false;
+      return false; // If any box is empty, it's not a tie
     }
   }
-  return true;
+  return true; // All boxes are filled
 };
 
 const disableBoxes = () => {
@@ -65,75 +83,71 @@ const disableBoxes = () => {
   }
 };
 
-const showWinner = (winner) => {
-  const winningPlayer = winner === player1 ? "Player 1" : "Player 2";
-  if (winner === player1) {
+const showWinner = (winnerSymbol) => {
+  let winningPlayerName;
+  if (winnerSymbol === player1Symbol) {
     player1Wins++;
     player2Losses++;
+    winningPlayerName = player1Name;
   } else {
     player2Wins++;
     player1Losses++;
+    winningPlayerName = player2Name;
   }
   updateScoreboard();
-  msg.innerHTML = `Congratulations to ${winningPlayer} (${winner}) for winning the game!<br>`;
+  msg.innerHTML = `🎉 Hooray! ${winningPlayerName} (${winnerSymbol}) wins the game! 🥳`;
   gameWinner.classList.remove("hide");
   game.classList.add("hide");
   reset.classList.add("hide");
-  scoreboard.style.marginTop = "-20rem";
 };
 
 const showTie = () => {
-  ties++;
+  draws++;
   updateScoreboard();
-  msg.innerHTML = `It's a tie! Players will switch sides.<br>`;
+  msg.innerHTML = `🤝 It's a Critter Tie! So close! <br> Critters will swap symbols!`;
   gameWinner.classList.remove("hide");
   game.classList.add("hide");
   reset.classList.add("hide");
 };
 
-const switchPlayers = () => {
-  const temp = player1;
-  player1 = player2;
-  player2 = temp;
-};
+// No need to switch player symbols here anymore, assignPlayers will handle it on new/continue
+// const switchPlayerSymbols = () => {
+//   const tempSymbol = player1Symbol;
+//   player1Symbol = player2Symbol;
+//   player2Symbol = tempSymbol;
+//   const tempName = player1Name;
+//   player1Name = player2Name;
+//   player2Name = tempName;
+// };
 
 const checkWinner = () => {
   for (let pattern of winningPatterns) {
-    let positionValue1 = boxes[pattern[0]].innerText;
-    let positionValue2 = boxes[pattern[1]].innerText;
-    let positionValue3 = boxes[pattern[2]].innerText;
+    let pos1Val = boxes[pattern[0]].innerText;
+    let pos2Val = boxes[pattern[1]].innerText;
+    let pos3Val = boxes[pattern[2]].innerText;
 
-    if (
-      positionValue1 !== "" &&
-      positionValue2 !== "" &&
-      positionValue3 !== ""
-    ) {
-      if (
-        positionValue1 === positionValue2 &&
-        positionValue2 === positionValue3
-      ) {
-        showWinner(positionValue1);
-        disableBoxes();
-        return;
-      }
+    if (pos1Val !== "" && pos1Val === pos2Val && pos2Val === pos3Val) {
+      showWinner(pos1Val);
+      disableBoxes();
+      return; // Winner found
     }
   }
   if (checkTie()) {
     showTie();
-    switchPlayers();
+    // switchPlayerSymbols(); // Symbols will be reassigned on "Continue" or "Play Again"
     disableBoxes();
   }
 };
 
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
-    if (box.innerText === "") {
-      if (turnO) {
-        box.innerText = player1;
-        turnO = false;
-      } else {
-        box.innerText = player2;
-        turnO = true;
+    if (box.innerText === "") { // Check if the box is empty
+      if (turnO) { // Player 1's turn (current player1Symbol)
+        box.innerText = player1Symbol;
+        turnO = false; // Switch turn to Player 2
+      } else { // Player 2's turn (current player2Symbol)
+        box.innerText = player2Symbol;
+        turnO = true; // Switch turn back to Player 1
       }
       box.disabled = true;
       checkWinner();
@@ -141,7 +155,7 @@ boxes.forEach((box) => {
   });
 });
 
-reset.addEventListener("click", () => {
+const resetGame = (isFullReset) => {
   boxes.forEach((box) => {
     box.innerText = "";
     box.disabled = false;
@@ -149,50 +163,33 @@ reset.addEventListener("click", () => {
   gameWinner.classList.add("hide");
   game.classList.remove("hide");
   reset.classList.remove("hide");
-  turnO = true;
-  player1Wins = 0;
-  player2Wins = 0;
-  player1Losses = 0;
-  player2Losses = 0;
-  ties = 0;
+  msg.innerText = ""; // Clear previous win/tie message
+
+  if (isFullReset) {
+    player1Wins = 0;
+    player2Wins = 0;
+    player1Losses = 0;
+    player2Losses = 0;
+    draws = 0;
+  }
+
+  assignPlayers(); // Assigns symbols and updates names
   updateScoreboard();
-  assignPlayers();
-  scoreboard.style.marginTop = "0rem";
+};
+
+
+reset.addEventListener("click", () => {
+  resetGame(true); // Full reset including scores
 });
 
 newGameBtn.addEventListener("click", () => {
-  boxes.forEach((box) => {
-    box.innerText = "";
-    box.disabled = false;
-  });
-  gameWinner.classList.add("hide");
-  game.classList.remove("hide");
-  reset.classList.remove("hide");
-  turnO = true;
-  player1Wins = 0;
-  player2Wins = 0;
-  player1Losses = 0;
-  player2Losses = 0;
-  ties = 0;
-  msg.innerText = "";
-  updateScoreboard();
-  assignPlayers();
-  scoreboard.style.marginTop = "0rem";
+  resetGame(true); // Full reset for "Play Again?"
 });
 
 continueBtn.addEventListener("click", () => {
-  boxes.forEach((box) => {
-    box.innerText = "";
-    box.disabled = false;
-  });
-  gameWinner.classList.add("hide");
-  game.classList.remove("hide");
-  reset.classList.remove("hide");
-  turnO = true;
-  msg.innerText = "";
-  assignPlayers();
-  scoreboard.style.marginTop = "0rem";
+  resetGame(false); // Reset board but keep scores
 });
 
+// Initial setup
 assignPlayers();
 updateScoreboard();
